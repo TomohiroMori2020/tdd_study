@@ -10,8 +10,7 @@ package tdd.money;
 // 6. 重複を除去（引数の5と2, と10が重複) -> テスト成功
 
 public class Dollar {
-	// int amount = 10; // テストを通すための最小限の変更（テストは10と等しければ通るので、代入しちゃう) -> 6で重複を除去するため、10の代入をなくす
-	int amount;
+	private int amount;
 	Dollar(int amount){
 		this.amount = amount;  // thisキーワード クラスのフィールドを指す メソッドを呼び出したインスタンスが内部に持っているデータにアクセスする
 	}
@@ -22,6 +21,12 @@ public class Dollar {
 		return new Dollar(amount*multiplier);
 	}
 
+	// assertEquals -> オーバーライドしたequalsが呼ばれている！
+	public boolean equals(Object object){
+	 	Dollar dollar = (Dollar) object;
+		 return amount == dollar.amount;
+	}
+	
 	// public boolean equals(Object object){
 	// 	Dollar dollar = (Dollar) object;   // Dollar型にキャスト
 	// 	return amount == dollar.amount;    // 新しく生成したdollarのamountフィールドが元のamountに等しいか
